@@ -3,3 +3,10 @@
 ################################################################################
 
 /.vs
+/Debug
+/Release
+/SDFFont/.vs/SDFFont/v15
+/SDFFont/Debug
+/SDFFont/Release
+/SDFFont/x64
+/x64
