@@ -22,10 +22,10 @@ Bitmap ^ FontRenderer::Render(wchar_t ch,bool nosdf)
 	s = s->Trim();
 
 	Drawing::Rectangle r;
-	r.X = 0;
-	r.Y = 0;
-	r.Width = bitmap->Width;
-	r.Height = bitmap->Height;
+	r.X = 32;
+	r.Y = 32;
+	r.Width = bitmap->Width - 64;
+	r.Height = bitmap->Height - 64;
 
 	auto size = grap->MeasureString(s, %font_);
 	grap->DrawString(s, %font_, Brushes::White,r);
