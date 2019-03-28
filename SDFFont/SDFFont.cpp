@@ -35,7 +35,7 @@ int main(array<System::String ^> ^args)
 		for each (ParsedOptions^ param in cmd)
 		{
 			if (param->Option == "srcfont")
-				srcfont = param->Param[0];
+				srcfont = param->Param[0]->Replace("\"","");
 
 			else if (param->Option == "dst")
 				dst = param->Param[0];
@@ -59,7 +59,7 @@ int main(array<System::String ^> ^args)
 	}
 	catch (Exception^)
 	{
-		Console::WriteLine(L"SDFFont -srcfont <font_name> -dst <dst_files> -chars <charstxt>");
+		Console::WriteLine(L"SDFFont -srcfont <font_family_name> -dst <dst_files> -chars <charstxt>");
 		return 1;
 	}
 
