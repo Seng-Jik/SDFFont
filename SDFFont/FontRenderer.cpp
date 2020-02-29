@@ -6,7 +6,7 @@ using namespace System;
 using namespace System::Drawing;
 
 FontRenderer::FontRenderer(System::String ^ fontName):
-	font_(fontName,384,System::Drawing::GraphicsUnit::Pixel)
+	font_(fontName,340,System::Drawing::GraphicsUnit::Pixel)
 {
 	
 }
@@ -22,10 +22,10 @@ Bitmap ^ FontRenderer::Render(wchar_t ch,bool nosdf)
 	s = s->Trim();
 
 	Drawing::Rectangle r;
-	r.X = 32;
-	r.Y = 32;
-	r.Width = bitmap->Width - 64;
-	r.Height = bitmap->Height - 64;
+	r.X = 0;
+	r.Y = 0;
+	r.Width = bitmap->Width;
+	r.Height = bitmap->Height;
 
 	auto size = grap->MeasureString(s, %font_);
 	grap->DrawString(s, %font_, Brushes::White,r);
