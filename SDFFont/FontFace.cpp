@@ -46,7 +46,30 @@ bool FontFace::AddChar(System::Drawing::Bitmap ^ bitmap, int fontHeight, System:
 
 void FontFace::SaveTo(System::String ^ output)
 {
+	System::Console::WriteLine("Writing... " + output);
 	graphic_->Flush();
-	image_->Save(output);
+
+	int maxX = 0, maxY = 0;
+	for (int y = 0; y < image_->Height; ++y)
+	{
+		for (int x = 0; x < image_->Width; ++x)
+		{
+			if (image_->GetPixel(x, y).A >= 1)
+			{
+				if (x > maxX) maxX = x;
+				if (y > maxY) maxY = y;
+			}
+		}
+	}
+
+	maxX++; maxY++;
+
+	auto pCliped = gcnew Bitmap(maxX,maxY,image_->PixelFormat);
+	for (int y = 0; y < maxY; ++y)
+		for (int x = 0; x < maxX; ++x)
+			pCliped->SetPixel(x, y, image_->GetPixel(x, y));
+	
+
+	pCliped->Save(output);
 }
 
